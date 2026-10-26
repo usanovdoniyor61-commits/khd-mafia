@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>KH.D MAFIA</title>
+<style>
+:root{--bg:#f0f1f6;--white:#fff;--ink:#20232b;--muted:#7b8190;--line:#e3e5ed;--gold:#e6bc62;--blue:#4167f4;--purple:#8053f5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45}.hidden{display:none!important}main{max-width:620px;margin:auto;padding:12px 15px 30px}
+.banner{height:158px;border-radius:28px;background:linear-gradient(115deg,#fff,#e4e6ed);display:flex;align-items:center;justify-content:center;gap:13px;margin:12px 0 27px;padding:12px;box-shadow:0 12px 30px #29344a12}.emblem{width:112px;height:112px;flex-shrink:0;border-radius:50%;border:3px solid #c79b4c;background:radial-gradient(circle at 30% 25%,#7b6546,#17191f 72%);display:grid;place-items:center;font-size:54px;box-shadow:0 8px 22px #1619232c}.wordmark{text-align:center;font-family:Georgia,serif;font-size:clamp(27px,7vw,42px);font-weight:1000;line-height:.88;color:#d6a94f;text-shadow:1px 2px #62431d,0 4px #f7e5a9}.wordmark small{display:block;font-size:12px;letter-spacing:4px;margin-bottom:8px;color:#86632b}
+.iconnav{display:flex;justify-content:space-between;gap:8px;margin:0 9px 14px}.iconbtn{width:61px;height:61px;flex-shrink:0;position:relative;border:1px solid #e0e2e9;border-radius:50%;background:linear-gradient(#fff,#f7f7fa);font-size:29px;box-shadow:0 3px 8px #1d26300a}.dot{position:absolute;right:-3px;top:-5px;background:#ed4857;color:white;border-radius:20px;padding:2px 7px;font-size:12px;font-weight:800}
+.quick{display:grid;grid-template-columns:1fr 3fr 1fr;gap:10px;margin:12px 0 27px}.quick button{height:110px;border:1px solid #e5d09b;border-radius:24px;background:#fffaf0;color:#c69b49;font-size:43px}.quick .fast{border:0;color:white;font-size:20px;font-weight:850;line-height:1.3;background:linear-gradient(115deg,#3968f5,#8053f5);box-shadow:0 12px 23px #6659ef35}
+.streak{border:2px solid #ead49d;border-radius:24px;background:linear-gradient(110deg,#fff8e8,#f4f0fc);padding:18px;margin-bottom:29px}.streaktop{display:flex;justify-content:space-between;gap:8px;font-weight:800}.streaktop span:last-child{text-align:right;color:#b8752b}.bars{display:flex;gap:8px;margin-top:17px}.bars i{height:11px;background:#dedbe4;border-radius:20px;flex:1}
+.sectionhead{display:flex;align-items:center;gap:9px;color:#7c8290;font-weight:850;letter-spacing:1.4px;margin:20px 5px 15px}.rooms{display:grid;gap:15px}.roomcard{width:100%;text-align:left;color:var(--ink);border:1px solid #e4e6ed;border-radius:21px;padding:19px 18px;background:linear-gradient(130deg,#fff,#fafbfe);box-shadow:0 4px 12px #1b23300a}.roomtop{display:flex;justify-content:space-between;gap:8px;font-size:20px;font-weight:800}.roomtop em{font-style:normal;color:#279a57;white-space:nowrap}.roomsub{display:flex;align-items:center;gap:7px;color:#808692;margin:13px 0 19px}.miniavatar{width:30px;height:30px;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,#e6c984,#b6c0d0);display:grid;place-items:center;border:2px solid white}.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{background:#f0f1f6;border:1px solid #e4e5ed;border-radius:30px;padding:6px 12px;color:#777e8b;font-size:13px;font-weight:700}
+.topbar{display:flex;align-items:center;gap:12px;padding:13px 0 22px;border-bottom:1px solid #dedfe7;margin-bottom:17px}.back{border:1px solid #e0e2e9;border-radius:30px;background:white;padding:9px 14px;color:#666e7d;white-space:nowrap}.topbar h2{font-size:23px;margin:0;flex:1;text-align:center}.tabs{display:flex;background:white;padding:7px;border-radius:22px;border:1px solid #e4e6ed;margin-bottom:22px;gap:5px}.tab{flex:1;min-width:0;border:0;background:transparent;border-radius:15px;padding:12px 3px;color:#777e8c;font-weight:800;font-size:13px}.tab.active{background:linear-gradient(120deg,#416af4,#8055f5);color:white;box-shadow:0 6px 15px #5d63e93b}.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:9px}.filter{flex-shrink:0;border:1px solid #e0e2e9;border-radius:14px;padding:12px 15px;background:white;color:#777e8c;font-weight:750}.filter.active{background:#355bd9;color:white}.update{text-align:center;color:#777e8c;padding:13px 0}.prize{background:#f2eee1;border:1px solid #ead8a8;border-radius:17px;padding:15px;margin:9px 0 35px}.podium{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:9px;align-items:end}.pod{min-width:0;background:white;border:1px solid #e2e4eb;border-radius:27px;padding:15px 6px 18px;text-align:center}.pod.first{border-color:#ebd08a;background:linear-gradient(#fff8df,#fff);padding-top:25px;transform:translateY(-14px)}.pod.third{background:linear-gradient(#fff1e4,#fff)}.rank{display:inline-block;border-radius:20px;background:#e5e8ee;padding:5px 9px;font-size:12px;font-weight:850}.first .rank{background:#f2c94b}.third .rank{background:#d9a16b}.portrait{width:76px;height:76px;max-width:100%;margin:14px auto 10px;border-radius:50%;border:4px solid #e3c36b;background:linear-gradient(135deg,#dfd4bc,#747e8d);display:grid;place-items:center;font-size:32px}.pod strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}.pod small{display:block;color:#858b97;margin-top:5px;font-size:11px}.score{font-size:26px;font-weight:950;color:#c79e40;margin-top:9px}.scorelabel{font-size:11px;letter-spacing:1.5px;color:#858b97;font-weight:850}.ranklist{display:grid;gap:12px}.rankrow{display:flex;align-items:center;gap:12px;background:white;border:1px solid #e4e6ed;border-radius:22px;padding:13px 15px}.ranknum{width:24px;text-align:center;font-size:18px;color:#777e8c;font-weight:850}.rankavatar{width:53px;height:53px;flex-shrink:0;border-radius:50%;background:#e7e8ef;display:grid;place-items:center;font-size:25px}.rankinfo{flex:1;min-width:0}.rankinfo strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rankinfo small{display:block;color:#858b97;font-size:12px;margin-top:5px}.rankscore{text-align:right;font-size:18px;font-weight:900;color:#9c7626}.rankscore small{display:block;font-size:11px;color:#858b97}
+.panel{background:white;border:1px solid #e3e5ec;border-radius:22px;padding:17px;margin-bottom:14px}.field{display:grid;gap:7px;color:#666e7d;font-weight:700;margin:12px 0}.field input{width:100%;padding:13px;border:1px solid #dfe2ea;border-radius:13px;background:#fafbfe;color:#20232b}.primary{background:linear-gradient(115deg,#4169f5,#8054f5);border:0;border-radius:14px;padding:14px;color:white;font-weight:850}.muted{color:#858b97;font-size:13px}.seatbox{position:relative;min-height:310px;border-radius:18px;background:radial-gradient(circle,#f3f0eb,#e8eaf1);border:1px solid #e0e2e9;overflow:hidden}.seatbox:after{content:'KH.D';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:23px;font-weight:950;letter-spacing:4px;color:#c8b58e;pointer-events:none}.seat{position:absolute;transform:translate(-50%,-50%);width:88px;text-align:center;z-index:1}.avatar{width:48px;height:48px;margin:auto;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#d6b16b,#7a7e91);border:3px solid #e7c56e;font-size:22px;box-shadow:0 4px 13px #0002}.seat b{display:block;font-size:12px;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.seat small{font-size:10px;color:#9c7626}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.actions button{padding:11px 5px;font-size:12px}.phase{text-align:center;color:#896625;font-weight:900;padding:9px}.chatbox{height:190px;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:10px;background:#f5f6fa;border-radius:13px;margin-bottom:9px}.msg{overflow-wrap:anywhere}.msg b{color:#9a7429}.chatrow{display:flex;gap:7px}.chatrow input{min-width:0;flex:1;padding:12px;border:1px solid #e0e2e9;border-radius:12px;background:#fafbfe}.chatrow button{border:0;border-radius:12px;background:var(--blue);color:white;padding:10px 15px}.notice{color:#9a7429;min-height:20px;font-size:13px;margin-top:8px}.foot{text-align:center;color:#9ba0ad;font-size:11px;padding:12px}
+@media(max-width:370px){main{padding:9px}.banner{height:130px}.emblem{width:85px;height:85px;font-size:42px}.iconbtn{width:53px;height:53px;font-size:24px}.quick button{height:94px}.pod{padding-left:3px;padding-right:3px}.portrait{width:64px;height:64px}.score{font-size:22px}.tab{font-size:11px}}
+
+.rolecard{display:flex;align-items:center;gap:15px;padding:14px;margin:12px 0;border-radius:20px;background:linear-gradient(135deg,#20232b,#383044);color:#fff;border:2px solid #e6bc62;box-shadow:0 8px 22px #17192325}
+.rolecard img{width:100px;height:115px;object-fit:cover;border-radius:14px;background:#444}
+#rolename{font-size:20px;font-weight:900;color:#f1cc78}
+#roledesc{font-size:13px;line-height:1.5;margin:6px 0 0;color:#eee}
+</style>
+
+<style id="khd-role-sms">
+#khd-role-sms-box{position:fixed;z-index:99999;top:calc(env(safe-area-inset-top,0px) + 8px);left:12px;right:12px;background:linear-gradient(135deg,#241014,#111116);border:1px solid #b92335;border-radius:17px;padding:15px;color:#fff;box-shadow:0 12px 40px #0009,0 0 18px #a3162b55;font:15px system-ui;transform:translateY(-150%);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s;pointer-events:none}
+#khd-role-sms-box.show{transform:translateY(0);opacity:1;pointer-events:auto}
+#khd-role-sms-box .khd-sms-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+#khd-role-sms-box .khd-sms-icon{width:39px;height:39px;border-radius:12px;background:#7f1728;display:grid;place-items:center;font-size:22px}
+#khd-role-sms-box .khd-sms-close{margin-left:auto;border:0;background:#ffffff18;color:white;border-radius:50%;width:28px;height:28px;font-size:19px}
+#khd-role-sms-box .khd-sms-role{font-size:19px;font-weight:800;color:#ff5368;margin-top:5px}
+#khd-role-sms-box .khd-sms-sub{font-size:12px;color:#c8c0c2;margin-top:5px}
+</style>
+
+
+<style id="khd-vote-panel-style">
+#targets.khd-vote-open{
+ position:fixed!important;z-index:9000!important;
+ left:10px!important;right:10px!important;
+ bottom:105px!important;max-height:30vh;overflow-y:auto;
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:7px;padding:12px;background:linear-gradient(145deg,#171116f5,#08080cf7);
+ border:1px solid #a91d32;border-radius:16px;
+ box-shadow:0 0 22px #d10e3033
+}
+#targets.khd-vote-open:before{
+ content:'🗳 OVOZ BERISH';grid-column:1/-1;
+ color:#ff5368;font-size:12px;font-weight:900;letter-spacing:2px;
+ padding:2px 3px 5px
+}
+#targets.khd-vote-open button{
+ margin:0!important;min-width:0;padding:10px 7px!important;
+ border:1px solid #65202c!important;border-radius:10px!important;
+ background:#21151b!important;color:#fff!important;
+ font-size:12px!important;overflow-wrap:anywhere
+}
+#targets.khd-vote-open button:active{background:#8d182d!important}
+@media(max-height:500px){#targets.khd-vote-open{max-height:24vh;bottom:90px!important}}
+</style>
+
+<style id="khd-arena-style">
+#khd-arena-intro{position:fixed;inset:0;z-index:1000000;overflow:hidden;background:#030305;color:#fff;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;perspective:900px;animation:khdFade 3.8s ease forwards}
+#khd-arena-intro .khd-scene{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 43%,#681020 0%,#240711 34%,#070609 75%)}
+#khd-arena-intro .khd-beam{position:absolute;top:-30%;width:22%;height:100%;background:linear-gradient(180deg,#ff1d402b,transparent);filter:blur(16px);transform-origin:top;animation:khdBeam 2s ease-in-out infinite alternate}
+#khd-arena-intro .khd-beam.one{left:8%;transform:rotate(24deg)}
+#khd-arena-intro .khd-beam.two{right:8%;transform:rotate(-24deg);animation-delay:.4s}
+#khd-arena-intro .khd-floor{position:absolute;left:-60%;right:-60%;height:65%;bottom:-35%;background:repeating-linear-gradient(90deg,#ff233c30 0 1px,transparent 1px 48px),repeating-linear-gradient(0deg,#ff233c30 0 1px,transparent 1px 38px);transform:rotateX(62deg);transform-origin:top;animation:khdFloor 3.8s linear}
+#khd-arena-intro .khd-gate{position:absolute;inset:12% 13%;border:2px solid #ff2949;box-shadow:0 0 18px #ff163b,inset 0 0 30px #ff163b55;transform:perspective(700px) translateZ(-300px) scale(.3);animation:khdGate 3.5s cubic-bezier(.2,.7,.15,1) forwards}
+#khd-arena-intro .khd-gate:before,#khd-arena-intro .khd-gate:after{content:"";position:absolute;top:0;bottom:0;width:48%;background:linear-gradient(90deg,#09070bf5,#360914eF);border:1px solid #a51a32}
+#khd-arena-intro .khd-gate:before{left:0;transform-origin:left;animation:khdDoorL 2s .5s ease-in forwards}
+#khd-arena-intro .khd-gate:after{right:0;transform-origin:right;animation:khdDoorR 2s .5s ease-in forwards}
+#khd-arena-intro .khd-arena-content{position:relative;z-index:3;text-align:center;padding:20px;animation:khdLogo 3.8s ease forwards}
+#khd-arena-intro .khd-arena-logo{font-size:clamp(38px,11vw,66px);font-weight:1000;line-height:1.02;letter-spacing:5px;text-shadow:0 0 10px #ff163b,0 0 35px #ed102e}
+#khd-arena-intro .khd-arena-sub{margin-top:15px;color:#ff536b;font-size:12px;font-weight:900;letter-spacing:6px}
+#khd-arena-intro .khd-arena-line{height:2px;width:0;margin:24px auto;background:#ff2949;box-shadow:0 0 16px #ff2949;animation:khdLoad 2s .4s forwards}
+@keyframes khdFade{0%{opacity:0}8%,78%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes khdBeam{from{opacity:.25}to{opacity:1}}
+@keyframes khdFloor{from{transform:rotateX(62deg) translateY(-20px)}to{transform:rotateX(62deg) translateY(80px)}}
+@keyframes khdGate{0%{transform:translateZ(-500px) scale(.25);opacity:0}35%{opacity:1}100%{transform:translateZ(150px) scale(1.35);opacity:.4}}
+@keyframes khdDoorL{to{transform:rotateY(-78deg)}}
+@keyframes khdDoorR{to{transform:rotateY(78deg)}}
+@keyframes khdLogo{0%{opacity:0;transform:scale(.5);filter:blur(10px)}25%,72%{opacity:1;transform:scale(1);filter:blur(0)}100%{opacity:0;transform:scale(1.35);filter:blur(5px)}}
+@keyframes khdLoad{to{width:min(220px,65vw)}}
+@media(prefers-reduced-motion:reduce){#khd-arena-intro *{animation-duration:.1s!important}}
+</style>
+
+<style id="khd-dark-arena-style">
+body.khd-dark-arena {
+  background: #050507 !important;
+  color: #eee !important;
+}
+body.khd-dark-arena #gamepanel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 78vh;
+  padding: 10px !important;
+  border: 1px solid #4b171d !important;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 44%, #401317 0%, #17090d 38%, #070709 76%) !important;
+  box-shadow: inset 0 0 55px #000, 0 0 22px #5c111b55;
+}
+body.khd-dark-arena #gamepanel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(88%, 430px);
+  height: 185px;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse, #6b3022 0%, #301813 53%, #100b0b 72%);
+  border: 5px solid #713b29;
+  box-shadow: 0 0 0 5px #160d0d, 0 0 28px #9b202044,
+    inset 0 0 24px #000;
+  opacity: .9;
+}
+body.khd-dark-arena #gamepanel::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 5% 5%, #b21d2833, transparent 35%),
+    radial-gradient(ellipse at 95% 5%, #b21d2833, transparent 35%),
+    linear-gradient(180deg, transparent 65%, #020203bb);
+}
+body.khd-dark-arena #seats,
+body.khd-dark-arena .seats,
+body.khd-dark-arena #players,
+body.khd-dark-arena .players {
+  position: relative;
+  z-index: 1;
+  gap: 8px !important;
+}
+body.khd-dark-arena .seat,
+body.khd-dark-arena .player-seat {
+  border-color: #6f252b !important;
+  box-shadow: 0 0 12px #8c172533;
+}
+body.khd-dark-arena #chat {
+  border: 1px solid #492027 !important;
+  border-radius: 12px;
+  background: #09080beF !important;
+}
+body.khd-dark-arena #targets {
+  background: #10090df2;
+  border: 1px solid #6c2028;
+  border-radius: 12px;
+}
+body.khd-dark-arena #phase {
+  color: #ff777d !important;
+  text-shadow: 0 0 12px #d71930;
+}
+body.khd-dark-arena #gamepanel button {
+  max-width: 100%;
+}
+@media (max-width: 600px) {
+  body.khd-dark-arena #gamepanel {
+    min-height: 75vh;
+    padding: 7px !important;
+  }
+  body.khd-dark-arena #gamepanel::before {
+    height: 145px;
+    top: 42%;
+  }
+}
+</style>
+
+
+<style id="khd-mafia-premium-design">
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+html {
+  min-height: 100%;
+  background: #070609 !important;
+}
+body {
+  font-family: 'Inter', sans-serif !important;
+  color: #f5eeee !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, #49121b 0%, transparent 48%),
+    radial-gradient(ellipse at 0% 55%, #241017 0%, transparent 45%),
+    linear-gradient(160deg, #08070a 0%, #13090e 48%, #050507 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+h1,h2,h3,.logo,.title,.brand,
+#gamepanel h1,#gamepanel h2 {
+  font-family: 'Cinzel', Georgia, serif !important;
+  letter-spacing: 1.5px;
+}
+button {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+button:active {
+  transform: scale(.97);
+}
+input,textarea,select {
+  font-family: 'Inter', sans-serif !important;
+}
+#gamepanel {
+  background-color: rgba(12,8,11,.88);
+  border-color: #54212b;
+  box-shadow: 0 12px 45px #0008, inset 0 0 35px #5b101b18;
+}
+</style>
+
+
+<style id="khd-mafia-background">
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+html, body {
+  margin: 0 !important;
+  min-height: 100% !important;
+  background: #080609 !important;
+}
+body {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  color: #f5eeee !important;
+  background:
+    linear-gradient(rgba(5,4,7,.76),rgba(5,4,7,.90)),
+    url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80')
+    center center / cover fixed no-repeat !important;
+  overflow-x: hidden !important;
+}
+h1,h2,h3,.logo,.title,.brand {
+  font-family: 'Cinzel', Georgia, serif !important;
+  font-size: clamp(16px,4.5vw,24px) !important;
+  letter-spacing: 1px !important;
+}
+#gamepanel {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
+  padding: 8px !important;
+  border: 1px solid #682631 !important;
+  border-radius: 12px !important;
+  background: rgba(12,8,12,.72) !important;
+  box-shadow: 0 5px 24px #0008 !important;
+}
+button,input,textarea,select {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  max-width: 100% !important;
+}
+@media(max-width:600px) {
+  body { background-attachment: scroll !important; }
+  #gamepanel { padding: 7px !important; }
+}
+</style>
+
+
+<style id="khd-premium-avatars">
+.khd-avatar-premium {
+  display:inline-flex!important;
+  width:44px;height:44px;flex-shrink:0;
+  align-items:center;justify-content:center;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 25%,#4b2028,#15151c 65%,#050507);
+  border:2px solid #bd2938;
+  box-shadow:0 0 12px #d21e363d,inset 0 0 9px #e52b3430;
+  color:#ff5361;font-size:25px;overflow:hidden;
+}
+.khd-avatar-premium svg{width:75%;height:75%;stroke:currentColor;
+ fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<script id="khd-premium-avatar-script">
+(()=>{
+const icons={
+"🐈":'<path d="M5 10 4 3l6 4q3-2 6 0l5-4-1 8q2 9-8 10Q2 20 5 10Z"/><path d="m8 12 3 1m5-1-3 1m-2 4 2 0"/>',
+"🐾":'<ellipse cx="12" cy="16" rx="6" ry="5"/><ellipse cx="5" cy="9" rx="2" ry="3"/><ellipse cx="10" cy="5" rx="2" ry="3"/><ellipse cx="15" cy="5" rx="2" ry="3"/><ellipse cx="20" cy="9" rx="2" ry="3"/>',
+"😎":'<circle cx="12" cy="12" r="10"/><path d="M3 10h7l2 3 2-3h7M8 17q4 3 8 0"/>',
+"👑":'<path d="m3 7 5 5 4-8 4 8 5-5-2 13H5zM5 23h14"/>',
+"💀":'<circle cx="12" cy="10" r="8"/><path d="M7 15v5h10v-5M9 10h.1m6 0h.1m-5 4h4"/>',
+"😈":'<path d="m5 5 4 3q3-2 6 0l4-3 2 9q-1 6-9 8-8-2-9-8zM8 11l4 3 4-3"/>'
+};
+const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const keys=Object.keys(icons).sort((a,b)=>b.length-a.length);
+const re=new RegExp(keys.map(esc).join('|'),'gu');
+function convert(root){
+if(!root||!root.querySelectorAll)return;
+const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+for(const n of nodes){
+if(!n.parentElement||n.parentElement.closest('script,style,textarea,input,button,.khd-avatar-premium,[contenteditable="true"]'))continue;
+const v=n.nodeValue;re.lastIndex=0;if(!re.test(v)){continue}re.lastIndex=0;
+const f=document.createDocumentFragment();let last=0,m;
+while((m=re.exec(v))){
+f.append(document.createTextNode(v.slice(last,m.index)));
+const e=document.createElement('span');
+e.className='khd-avatar-premium';
+e.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[m[0]]+'</svg>';
+e.setAttribute('aria-label','Premium avatar');
+f.append(e);last=m.index+m[0].length;
+}
+f.append(document.createTextNode(v.slice(last)));n.replaceWith(f);
+}
+}
+function run(){
+convert(document.body);
+new MutationObserver(records=>records.forEach(r=>{
+r.addedNodes.forEach(n=>{if(n.nodeType===1)convert(n)});
+if(r.type==='characterData'&&r.target.parentElement)convert(r.target.parentElement);
+})).observe(document.body,{subtree:true,childList:true,characterData:true});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+})();
+</script>
+</head>
+<body><main>
+<section id="home">
+<header class="banner"><div class="emblem">♟</div><div class="wordmark"><small>— PLAY —</small>MAFIA</div></header>
+<nav class="iconnav">
+<button class="iconbtn" id="night" aria-label="Tun">🌙</button>
+<button class="iconbtn" id="books" aria-label="Vazifalar">📕<span class="dot">1</span></button>
+<button class="iconbtn" id="rankingbtn" aria-label="Reyting">🏆</button>
+<button class="iconbtn" id="roomsbtn" aria-label="Xonalar">🏟️</button>
+<button class="iconbtn" id="profilebtn" aria-label="Profil">🎭</button>
+</nav>
+<div class="quick"><button id="create" aria-label="Xona yaratish">＋</button><button class="fast" id="fast">⚡ Tezkor<br>qo‘shilish</button><button id="enter" aria-label="Kod bilan kirish">▦</button></div>
+<div class="streak"><div class="streaktop"><span>🔥 0 kunlik seriya</span><span>Bugun: 0/3 vazifa</span></div><div class="bars"><i></i><i></i><i></i></div></div>
+<div class="sectionhead">♧ OCHIQ XONALAR</div>
+<div class="rooms" id="rooms"></div>
+<div class="foot">KH.D MAFIA ARENA · PREMIUM EDITION</div>
+</section>
+<section id="ranking" class="hidden">
+<header class="topbar"><button class="back" id="rankback">← Orqaga</button><h2>Reyting jadvali</h2><span style="width:54px"></span></header>
+<button class="back" id="rankback2" style="margin-bottom:10px">× Orqaga</button>
+<div class="tabs"><button class="tab active" data-kind="players">🎭 Top O‘yinchilar</button><button class="tab" data-kind="owls">🏟️ Top Ovullar</button></div>
+<div class="filters"><button class="filter active" data-period="Haftalik">Haftalik</button><button class="filter" data-period="2-mavsum">2-mavsum</button><button class="filter" data-period="Umumiy">Umumiy</button><button class="filter" data-period="Do‘stlar">Do‘stlar</button></div>
+<div class="update">◷ Dushanba kuni yangilanadi · haftalik reyting</div>
+<div class="prize">👑 Hafta g‘olibiga <b>1 haftalik Play Mafia Pro</b> obunasi sovg‘a qilinadi!</div>
+<div class="podium" id="podium"></div><div class="ranklist" id="ranklist"></div>
+</section>
+<section id="lobby" class="hidden">
+<header class="topbar"><button class="back" id="back">← Orqaga</button><h2 id="roomtitle">XONA</h2><span style="width:48px"></span></header>
+<div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b>O‘yinchilar</b><span class="muted"><span id="count">0</span>/10</span></div><div id="seats" class="seatbox"></div><div class="actions"><button class="primary" id="start">▶ O‘YINNI BOSHLASH</button><button class="back" id="copy">KODNI NUSXALASH</button></div><div class="notice" id="notice"></div></div>
+<div id="gamepanel" class="panel hidden"><div class="phase" id="phase">KUTILMOQDA</div><div id="role" style="text-align:center;font-weight:800;margin:8px"></div>
+<div id="rolecard" class="rolecard hidden">
+<img id="rolepicture" alt="Sizning rolingiz">
+<div><div id="rolename"></div><p id="roledesc"></p></div>
+</div><div id="targets" class="rooms"></div><div class="actions"><button id="nightdone" class="primary">TUNNI YAKUNLASH</button><button id="voteend" class="back">OVOZ BERISH</button></div></div>
+<div class="panel"><div style="font-weight:850;margin-bottom:12px">💬 UMUMIY CHAT</div><div id="chat" class="chatbox"></div><div class="chatrow"><input id="message" maxlength="300" placeholder="Xabar yozing..."><button id="send">➤</button></div></div>
+</section>
+<div id="modal" class="hidden" style="position:fixed;inset:0;background:#161a24a8;z-index:9;padding:20px;display:grid;place-items:center"><div class="panel" style="width:min(100%,420px)"><div class="topbar"><h2 id="modtitle">Xonaga kirish</h2><button class="back" id="closemodal">✕</button></div><label class="field">O‘yinchi ismi<input id="name" maxlength="24" placeholder="Ismingiz"></label><label class="field" id="codelabel">Xona kodi<input id="code" inputmode="numeric" maxlength="4" placeholder="4 xonali kod"></label><button class="primary" id="modgo" style="width:100%">DAVOM ETISH</button><div class="notice" id="modnotice"></div></div></div>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const tgUser=window.Telegram?.WebApp?.initDataUnsafe?.user;
+const tgPhoto=(tgUser?.photo_url||'');
+const socket=io();let current=null,players=[],host=null,phase='lobby',role='',mode='create',roomList=[];
+const $=id=>document.getElementById(id);
+function show(id){['home','ranking','lobby'].forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo(0,0)}
+function openModal(m){mode=m;$('modal').classList.remove('hidden');$('modtitle').textContent=m==='create'?'Yangi xona':m==='join'?'Xonaga kirish':'Tezkor qo‘shilish';$('codelabel').classList.toggle('hidden',m!=='join');$('modnotice').textContent='';$('name').focus()}
+function closeModal(){$('modal').classList.add('hidden')}
+function note(t){$('notice').textContent=t||''}
+$('create').onclick=()=>openModal('create');$('fast').onclick=()=>openModal('fast');$('enter').onclick=()=>openModal('join');$('closemodal').onclick=closeModal;
+$('modgo').onclick=()=>{const name=$('name').value.trim()||'Mehmon';if(mode==='create')socket.emit('room:create',{name,photoUrl:tgPhoto});else if(mode==='join')socket.emit('room:join',{code:$('code').value.trim(),name,photoUrl:tgPhoto});else{const r=roomList.find(x=>x.phase==='lobby'&&x.count<10);if(r)socket.emit('room:join',{code:r.code,name,photoUrl:tgPhoto});else socket.emit('room:create',{name,photoUrl:tgPhoto})}};
+$('roomsbtn').onclick=()=>{show('home');$('rooms').scrollIntoView({behavior:'smooth'})};
+$('rankingbtn').onclick=()=>{renderRanking();show('ranking')};
+$('books').onclick=()=>alert('Vazifalar bo‘limi keyingi bosqichda ulanadi.');
+$('profilebtn').onclick=()=>alert('Profil bo‘limi keyingi bosqichda ulanadi.');
+$('night').onclick=()=>{document.body.classList.toggle('nightmode');document.body.style.background=document.body.classList.contains('nightmode')?'#20232b':'var(--bg)';document.body.style.color=document.body.classList.contains('nightmode')?'#fff':'var(--ink)'};
+function renderRooms(list){roomList=list||[];$('rooms').innerHTML='';if(!roomList.length){const p=document.createElement('div');p.className='roomcard';p.style.color='#7b8190';p.textContent='Hozircha ochiq xona yo‘q. Birinchi bo‘lib xona yarating!';$('rooms').append(p);return}roomList.forEach(r=>{const b=document.createElement('button');b.className='roomcard';b.disabled=r.phase!=='lobby'||r.count>=10;const top=document.createElement('div');top.className='roomtop';const title=document.createElement('span');title.textContent='Xona '+r.code;const count=document.createElement('em');count.textContent=r.count+'/10';top.append(title,count);const sub=document.createElement('div');sub.className='roomsub';const av=document.createElement('span');av.className='miniavatar';av.textContent='♟';const owner=document.createElement('span');owner.textContent=r.phase==='lobby'?'O‘yinchilar kutilyapti':'O‘yin boshlangan';sub.append(av,owner);const pills=document.createElement('div');pills.className='pills';const p1=document.createElement('span');p1.className='pill';p1.textContent='♧ 5–10 kishi';const p2=document.createElement('span');p2.className='pill';p2.textContent='◷ Jonli o‘yin';pills.append(p1,p2);b.append(top,sub,pills);b.onclick=()=>openModal('join')&&($('code').value=r.code);b.addEventListener('click',()=>{if(!b.disabled){openModal('join');$('code').value=r.code}});$('rooms').append(b)})}
+function joinRoom(code){socket.emit('room:join',{code,name:$('name').value.trim()||'Mehmon',photoUrl:tgPhoto})}
+socket.on('connect',()=>socket.emit('rooms:list'));socket.on('rooms:list:update',renderRooms);
+socket.on('room:joined',d=>{current=d.code;closeModal();$('roomtitle').textContent='XONA '+current;$('chat').innerHTML='';show('lobby');note('Xonaga muvaffaqiyatli kirdingiz.')});
+socket.on('notice',t=>{note(t);$('modnotice').textContent=t});
+$('back').onclick=()=>location.reload();
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(current);note('Xona kodi nusxalandi: '+current)}catch{note('Xona kodi: '+current)}};
+$('start').onclick=()=>socket.emit('player:ready');$('nightdone').onclick=()=>socket.emit('game:day');
+$('voteend').onclick=()=>note('Ovoz berish uchun tirik o‘yinchini tanlang.');
+function renderSeats(){const box=$('seats');box.innerHTML='';const n=players.length;if(!n)return;const w=box.clientWidth,h=310,cx=w/2,cy=h/2,rx=Math.min(w*.37,155),ry=112;players.forEach((p,i)=>{const a=-Math.PI/2+2*Math.PI*i/n,s=document.createElement('div');s.className='seat';s.style.left=(cx+rx*Math.cos(a))+'px';s.style.top=(cy+ry*Math.sin(a))+'px';const av=document.createElement('div');av.className='avatar';if(p.photoUrl){
+av.style.backgroundImage='url("'+p.photoUrl.replace(/["\\\\]/g,'')+'")';
+av.style.backgroundSize='cover';av.style.backgroundPosition='center';
+av.textContent='';
+}else{av.textContent=(p.name||'?').charAt(0).toUpperCase();}const b=document.createElement('b');b.textContent=(p.name||'Mehmon')+(p.host?' 👑':'');const sm=document.createElement('small');sm.textContent=p.alive===false?'CHIQQAN':phase==='lobby'?'KUTILMOQDA':'O‘YINCHI';s.append(av,b,sm);box.append(s)})}
+socket.on('room:update',r=>{if(!current||r.code!==current)return;players=r.players||[];host=r.hostId;phase=r.phase;renderSeats();$('count').textContent=players.length;$('start').classList.toggle('hidden',socket.id!==host||phase!=='lobby');$('gamepanel').classList.toggle('hidden',phase==='lobby');$('phase').textContent=phase==='night'?'🌙 TUN':phase==='day'?'☀️ KUN':phase==='game_over'?'🏆 O‘YIN TUGADI':'KUTILMOQDA';$('nightdone').classList.toggle('hidden',socket.id!==host||phase!=='night');$('voteend').classList.toggle('hidden',phase!=='day');renderTargets()});
+function renderTargets(){const box=$('targets');box.innerHTML='';box.classList.toggle('khd-vote-open',phase==='day');if(phase==='lobby')return;players.filter(p=>p.alive&&p.id!==socket.id).forEach(p=>{const b=document.createElement('button');b.className='roomcard';b.textContent=(phase==='day'?'🗳 ':'🎯 ')+p.name;b.onclick=()=>{if(phase==='night')socket.emit('game:action',{targetId:p.id});else if(phase==='day')socket.emit('game:vote',{targetId:p.id});note(p.name+' uchun harakat yuborildi')};box.append(b)})}
+socket.on('game:role',d=>{
+  role=d.role;
+  if(window.khdShowArenaIntro){window.khdShowArenaIntro();setTimeout(()=>{if(window.khdShowRoleNotification)window.khdShowRoleNotification(d.role)},3500)}else if(window.khdShowRoleNotification)window.khdShowRoleNotification(d.role);
+  const info={
+    mafia:['🔪 MAFIYA','Tunda nishonni tanlang.','https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80'],
+    doctor:['🩺 DOKTOR','Tunda himoya qiladigan o‘yinchini tanlang.','https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&q=80'],
+    detective:['🕵️ IZQUVAR','Tunda tekshirmoqchi bo‘lgan o‘yinchini tanlang.','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80'],
+    citizen:['👤 TINCH AHOLI','Kunduzi muhokama qiling va ovoz bering.','https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80']
+  };
+  const x=info[d.role]||['🎭 '+d.role,'O‘yin davom etmoqda.',''];
+  $('role').textContent='SIZNING MAXFIY ROLINGIZ';
+  $('rolecard').classList.remove('hidden');
+  $('rolepicture').src=x[2];
+  $('rolename').textContent=x[0];
+  $('roledesc').textContent=x[1];
+});
+socket.on('game:phase',d=>{phase=d.phase;renderTargets()});socket.on('game:result',d=>note((d.players||[]).map(p=>p.name+': '+(p.alive?'tirik':'o‘yindan chiqdi')).join(' · ')));
+socket.on('game:investigation',d=>note(d.target+': '+(d.role==='mafia'?'MAFIYA!':'Mafiya emas')));
+function sendChat(){const v=$('message').value.trim();if(v){socket.emit('chat:send',v);$('message').value=''}}$('send').onclick=sendChat;$('message').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});
+socket.on('chat:message',m=>{const d=document.createElement('div');d.className='msg';const b=document.createElement('b');b.textContent=m.name+': ';const t=document.createElement('span');t.textContent=m.text;d.append(b,t);$('chat').append(d);$('chat').scrollTop=$('chat').scrollHeight});
+const sample=[['veda','1 436','🐈'],['Bonushka','1 395','🐾'],['Original','1 306','👑'],['ФАНТОМ','1 238','🎭'],['Saidganievass','1 149','🌟'],['azam','1 133','🦅'],['Teraflyu','985','🐺'],['Mehmon','940','♟']];
+function renderRanking(){const kind=document.querySelector('.tab.active')?.dataset.kind||'players';const names=kind==='players'?sample:[['Mafia Arena','2 430','🏟️'],['Zangori xona','1 920','🔵'],['Oq xona','1 750','⚪'],...sample.slice(3)];$('podium').innerHTML='';names.slice(0,3).forEach((p,i)=>{const d=document.createElement('div');d.className='pod '+(i===0?'first':i===2?'third':'');const rank=document.createElement('span');rank.className='rank';rank.textContent=(i+1)+'-o‘rin';const pic=document.createElement('div');pic.className='portrait';pic.textContent=p[2];const name=document.createElement('strong');name.textContent=p[0];const small=document.createElement('small');small.textContent=i===0?"209 o‘yin · 61%":i===1?"171 o‘yin · 64%":"174 o‘yin · 67%";const score=document.createElement('div');score.className='score';score.textContent=p[1];const label=document.createElement('div');label.className='scorelabel';label.textContent=kind==='players'?'BALL':'BALL';d.append(rank,pic,name,small,score,label);$('podium').append(d)});$('ranklist').innerHTML='';names.slice(3).forEach((p,i)=>{const d=document.createElement('div');d.className='rankrow';d.innerHTML='<span class="ranknum">'+(i+4)+'</span><span class="rankavatar">'+p[2]+'</span><span class="rankinfo"><strong></strong><small>O‘yinlar · haftalik natija</small></span><span class="rankscore"><span></span><small>ball</small></span>';d.querySelector('.rankinfo strong').textContent=p[0];d.querySelector('.rankscore span').textContent=p[1];$('ranklist').append(d)})}
+$('rankback').onclick=()=>show('home');$('rankback2').onclick=()=>show('home');
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));renderRanking()});
+document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===b))});
+renderRanking();socket.emit('rooms:list');
+</script>
+
+<style id="KHD_PREMIUM_EMOJIS">
+.khd-premium-emoji {
+  display: inline-block;
+  font-family: "Apple Color Emoji","Noto Color Emoji",sans-serif;
+  filter: drop-shadow(0 2px 3px rgba(168,85,247,.38));
+  transform-origin: center;
+  transition: filter .2s ease, transform .2s ease;
+}
+button .khd-premium-emoji { vertical-align: -0.08em; }
+button:active .khd-premium-emoji {
+  transform: scale(.92);
+}
+</style>
+<script>
+(function(){
+  const mark = 'khd-premium-emoji';
+  const emoji = /(?:\p{Regional_Indicator}{2}|[#*0-9]\uFE0F?\u20E3|\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?(?:\p{Emoji_Modifier})?(?:\u200D\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?(?:\p{Emoji_Modifier})?)*)/gu;
+  function decorate(root){
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while(walker.nextNode()){
+      const n = walker.currentNode;
+      if(n.parentElement && !n.parentElement.closest('script,style,textarea,input,.khd-premium-emoji,[contenteditable="true"]') && emoji.test(n.textContent)){
+        emoji.lastIndex = 0;
+        if(emoji.test(n.textContent)) nodes.push(n);
+        emoji.lastIndex = 0;
+      }
+    }
+    nodes.forEach(n=>{
+      const frag = document.createDocumentFragment();
+      let last = 0, match;
+      emoji.lastIndex = 0;
+      while((match = emoji.exec(n.textContent)) !== null){
+        frag.append(document.createTextNode(n.textContent.slice(last, match.index)));
+        const span = document.createElement('span');
+        span.className = mark;
+        span.textContent = match[0];
+        frag.append(span);
+        last = match.index + match[0].length;
+      }
+      frag.append(document.createTextNode(n.textContent.slice(last)));
+      n.replaceWith(frag);
+    });
+  }
+  function start(){
+    decorate(document.body);
+    new MutationObserver(records=>{
+      records.forEach(r=>r.addedNodes.forEach(n=>{
+        if(n.nodeType===Node.TEXT_NODE && n.parentElement && !n.parentElement.closest('script,style,textarea,input,.khd-premium-emoji,[contenteditable="true"]')){
+          const parent=n.parentElement;
+          decorate(parent);
+        } else if(n.nodeType===Node.ELEMENT_NODE && !n.matches('script,style')) decorate(n);
+      }));
+    }).observe(document.body,{childList:true,subtree:true});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
+})();
+</script>
+
+
+<script id="khd-free-voice">
+(function(){
+  if (!("speechSynthesis" in window)) {
+    console.log("Brauzer ovozni qo‘llamaydi");
+    return;
+  }
+
+  let lastPhase = "";
+  let timer;
+
+  function speak(text) {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "uz-UZ";
+    u.rate = 0.82;
+    u.pitch = 0.72;
+    u.volume = 1;
+    const voices = speechSynthesis.getVoices();
+    const uz = voices.find(v => /^uz([-_]|$)/i.test(v.lang));
+    if (uz) u.voice = uz;
+    speechSynthesis.speak(u);
+  }
+
+  function checkPhase() {
+    const text = document.body.innerText || "";
+    const night = /tun boshlandi|tungi bosqich|night started|^\s*(?:tun|night)\s*$/im.test(text);
+    const day = /kun boshlandi|kunduz boshlandi|day started|^\s*(?:kun|day)\s*$/im.test(text);
+    const phase = night ? "night" : day ? "day" : "";
+
+    if (phase && phase !== lastPhase) {
+      lastPhase = phase;
+      speak(phase === "night"
+        ? "Tun tushdi. Hamma jim bo‘lsin."
+        : "Tong otdi. Kun boshlandi. Hushyor bo‘ling.");
+    }
+  }
+
+  new MutationObserver(() => {
+    clearTimeout(timer);
+    timer = setTimeout(checkPhase, 500);
+  }).observe(document.body, {
+    childList: true, subtree: true, characterData: true
+  });
+
+  window.khdTestVoice = () => speak("KH.D Mafia. O‘yin boshlandi.");
+  console.log("KH.D bepul ovoz tizimi tayyor");
+})();
+</script>
+
+
+<script id="khd-role-sms">
+(function(){
+ let timer;
+ function showRole(role){
+  let box=document.getElementById('khd-role-sms-box');
+  if(!box){
+   box=document.createElement('div');box.id='khd-role-sms-box';
+   box.innerHTML='<div class="khd-sms-head"><div class="khd-sms-icon">✉</div><div><b>KH.D MAFIA</b><div style="font-size:11px;color:#b9adb0">Yangi xabar · hozir</div></div><button class="khd-sms-close" aria-label="Yopish">×</button></div><div class="khd-sms-role"></div><div class="khd-sms-sub">Rolangizni eslab qoling. O‘yin boshlanmoqda!</div>';
+   document.body.appendChild(box);
+   box.querySelector('.khd-sms-close').onclick=()=>{box.classList.remove('show');clearTimeout(timer)};
+  }
+  box.querySelector('.khd-sms-role').textContent='🎭 Sizning rolingiz: '+String(role||'').toLocaleUpperCase();
+  box.classList.add('show');clearTimeout(timer);
+  timer=setTimeout(()=>box.classList.remove('show'),7000);
+ }
+ window.khdShowRoleNotification=showRole;
+ document.addEventListener('khd:show-role',e=>showRole(e.detail&&e.detail.role));
+})();
+</script>
+
+<script id="khd-arena-script">
+(function(){
+ window.khdShowArenaIntro=function(){
+  const old=document.getElementById('khd-arena-intro');
+  if(old)old.remove();
+  const el=document.createElement('div');
+  el.id='khd-arena-intro';
+  el.innerHTML='<div class="khd-scene"><div class="khd-beam one"></div><div class="khd-beam two"></div><div class="khd-floor"></div><div class="khd-gate"></div></div><div class="khd-arena-content"><div style="font-size:11px;letter-spacing:6px;color:#e7a6af;margin-bottom:15px">WELCOME TO</div><div class="khd-arena-logo">KH.D<br>MAFIA</div><div class="khd-arena-sub">THE ARENA</div><div class="khd-arena-line"></div><div style="font-size:10px;letter-spacing:3px;color:#f0dce0">O‘YIN BOSHLANMOQDA</div></div>';
+  document.body.appendChild(el);
+  setTimeout(()=>{el.remove();document.body.classList.add('khd-dark-arena')},3900);
+ };
+})();
+</script>
+
+<!-- KHD_PREMIUM_ICONS_V1 -->
+<style>
+.khd-premium-icon{
+ display:inline-flex!important;align-items:center;justify-content:center;
+ width:1.35em;height:1.35em;vertical-align:-.25em;
+ margin:0 .08em;flex-shrink:0;color:#ff343f;
+ background:linear-gradient(145deg,#25252d,#09090c);
+ border:1px solid #b82b35;border-radius:23%;
+ box-shadow:inset 0 0 7px #a11a2944,0 0 5px #ed182533;
+}
+.khd-premium-icon svg{width:82%;height:82%;fill:none;
+ stroke:currentColor;stroke-width:1.8;stroke-linecap:round;
+ stroke-linejoin:round}
+.khd-premium-icon.gold{color:#ffd16a;border-color:#a77a29}
+</style>
+<script>
+(()=>{
+if(window.KHD_PREMIUM_ICONS_V1)return;
+window.KHD_PREMIUM_ICONS_V1=true;
+const icons={
+'📚':['book','gold'],'📖':['book','gold'],'🏆':['trophy','gold'],
+'🥇':['trophy','gold'],'🏟️':['stadium','red'],'🏟':['stadium','red'],
+'🎁':['gift','gold'],'👑':['crown','gold'],'💎':['diamond','gold'],
+'💰':['coin','gold'],'🪙':['coin','gold'],'🎮':['game','red'],
+'💬':['chat','red'],'❤️':['heart','red'],'♥️':['heart','red'],
+'💀':['skull','red'],'☠️':['skull','red'],'😈':['mask','red'],
+'🔒':['lock','gold'],'🔑':['key','gold'],'⭐':['star','gold'],
+'🌟':['star','gold'],'⚙️':['gear','red'],'⚙':['gear','red'],
+'🎉':['gift','gold'],'🔥':['flame','red'],'🛡️':['shield','gold'],
+'🛡':['shield','gold'],'🏅':['trophy','gold'],'💵':['coin','gold']
+};
+const paths={
+book:'<path d="M3 4q5-2 9 2v14q-4-4-9-2zM21 4q-5-2-9 2v14q4-4 9-2z"/>',
+trophy:'<path d="M7 3h10v5a5 5 0 0 1-10 0zM7 5H3v3a5 5 0 0 0 5 5m9-8h4v3a5 5 0 0 1-5 5M12 13v5m-5 3h10m-8-3h6"/>',
+stadium:'<path d="M3 9 12 4l9 5v10H3zM7 12h10M7 16h10M6 9v11m12-11v11"/>',
+gift:'<rect x="3" y="9" width="18" height="12" rx="1"/><path d="M2 6h20v4H2zM12 6v15M12 6C4-2 3 8 12 6c9-8 10 2 0 0"/>',
+crown:'<path d="m3 7 5 5 4-8 4 8 5-5-2 13H5zM5 23h14"/>',
+diamond:'<path d="M4 8 8 3h8l4 5-8 13zM4 8h16M8 3l4 18 4-18"/>',
+coin:'<circle cx="12" cy="12" r="9"/><path d="M15 8q-6-3-6 1t6 2q3 4-6 5m3-11v14"/>',
+game:'<path d="M7 7h10a5 5 0 0 1 4 6l-2 5-5-3h-4l-5 3-2-5a5 5 0 0 1 4-6zM7 11h4m-2-2v4m7-1h.1m3-2h.1"/>',
+chat:'<path d="M4 4h16v13H9l-5 4zM8 9h8m-8 4h5"/>',
+heart:'<path d="M12 21 4 13C-1 6 7 1 12 7c5-6 13-1 8 6z"/>',
+skull:'<circle cx="12" cy="10" r="8"/><path d="M7 15v5h10v-5M9 10h.1m6-.1h.1M10 14h4"/>',
+mask:'<path d="M3 7q9-6 18 0l-2 9-7 5-7-5zM6 11l5 2m7-2-5 2"/>',
+lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/>',
+key:'<circle cx="8" cy="10" r="5"/><path d="m12 13 8 8m-3-5 3-3"/>',
+star:'<path d="m12 2 3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/>',
+gear:'<circle cx="12" cy="12" r="4"/><path d="m10 2 4 0 1 3 3 1 3-1 2 4-2 2v3l2 2-2 4-3-1-3 1-1 3h-4l-1-3-3-1-3 1-2-4 2-2v-3L1 9l2-4 3 1 3-1z"/>',
+flame:'<path d="M13 2q3 7-1 9 0-4-4-6 2 7-3 11a7 7 0 0 0 14 0q0-6-6-14z"/>',
+shield:'<path d="M12 2 21 6v6q-1 7-9 10-8-3-9-10V6zM8 12l3 3 5-6"/>'
+};
+function make(name,theme){
+const span=document.createElement('span');
+span.className='khd-premium-icon '+(theme==='gold'?'gold':'');
+span.setAttribute('role','img');span.setAttribute('aria-label','Premium '+name);
+span.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+
+(paths[name]||paths.star)+'</svg>';
+return span;
+}
+const pattern=new RegExp(Object.keys(icons).sort((a,b)=>b.length-a.length).map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'gu');
+function scan(root){
+if(!root||root.nodeType!==1&&root.nodeType!==9)return;
+const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+for(const node of nodes){
+if(!node.parentElement||node.parentElement.closest('script,style,textarea,input,select,option,code,.khd-premium-icon,[contenteditable="true"]'))continue;
+const value=node.nodeValue;if(!pattern.test(value)){pattern.lastIndex=0;continue}
+pattern.lastIndex=0;
+const frag=document.createDocumentFragment();let last=0,m;
+while((m=pattern.exec(value))){
+frag.append(document.createTextNode(value.slice(last,m.index)));
+const [name,theme]=icons[m[0]];frag.append(make(name,theme));last=m.index+m[0].length;
+}
+frag.append(document.createTextNode(value.slice(last)));node.replaceWith(frag);
+}
+}
+function start(){scan(document.body);new MutationObserver(records=>records.forEach(r=>{
+r.addedNodes.forEach(n=>{if(n.nodeType===1)scan(n);});
+if(r.type==='characterData'&&r.target.parentElement)scan(r.target.parentElement);
+})).observe(document.body,{childList:true,subtree:true,characterData:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
+</body></html>
